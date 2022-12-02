@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Block IBU Spoilers
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Remove the spoiler images from the IBU page. Highlight the Replays
 // @author       fgiele
 // @match        https://www.eurovisionsports.tv/ibu/
@@ -39,7 +39,8 @@ function highlightReplay(){
     replaylist = document.getElementsByClassName('video__title');
     for (index = 0; index < replaylist.length; ++index) {
         currentTitle = replaylist[index];
-        if(currentTitle.innerText.toUpperCase().indexOf('REPLAY') !== -1)
+        if(currentTitle.innerText.toUpperCase().indexOf('REPLAY') !== -1
+          || currentTitle.innerText.toUpperCase().indexOf('FULL RACE') !== -1)
         {
             currentTitle.parentElement.style.background = "#00AA00";
         }
