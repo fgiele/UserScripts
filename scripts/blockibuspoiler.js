@@ -40,8 +40,7 @@ function hideImages(){
 function highlightReplay(){
     var replaylist, index, currentTitle;
     replaylist = document.getElementsByClassName('video__title');
-    for (index = 0; index < replaylist.length; ++index) {
-        currentTitle = replaylist[index];
+    for (let currentTitle of replaylist) {
         if(currentTitle.innerText.toUpperCase().indexOf('REPLAY') !== -1
           || currentTitle.innerText.toUpperCase().indexOf('FULL RACE') !== -1)
         {
