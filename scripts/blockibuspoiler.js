@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Block IBU Spoilers
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Remove the spoiler images from the IBU page. Highlight the Replays
 // @author       fgiele
 // @match        https://www.eurovisionsports.tv/ibu/
@@ -24,6 +24,9 @@ function cleanPage(){
 
     // Highlight the Replay
     highlightReplay();
+
+    // Hide interview texts
+    hideInterviewTextSpoilers();
 }
 
 function hideImages(){
@@ -43,6 +46,18 @@ function highlightReplay(){
           || currentTitle.innerText.toUpperCase().indexOf('FULL RACE') !== -1)
         {
             currentTitle.parentElement.style.background = "#00AA00";
+        }
+    }
+}
+
+function hideInterviewTextSpoilers(){
+    var interviewList, index, currentTitle, descriptionText;
+    interviewList = document.getElementsByClassName('video__title');
+    for (let currentTitle of interviewList) {
+        if(currentTitle.innerText.toUpperCase().indexOf('INTERVIEW') !== -1)
+        {
+            descriptionText = currentTitle.nextElementSibling;
+            descriptionText.innerText = '... Possible spoilers ...';
         }
     }
 }
